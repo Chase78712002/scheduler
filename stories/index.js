@@ -158,31 +158,29 @@ storiesOf("Appointment", module)
       onCancel={action("onCancel")}
     />
   ))
-  .add("Status", ()=> (
-    <Status message={"Deleting"}/>
-  ))
+  .add("Status", () => <Status message={"Deleting"} />)
   .add("Error", () => (
-    <Error 
-    message={"Could not delete appointment"}
-    onClose={action("onClose")}
+    <Error
+      message={"Could not delete appointment"}
+      onClose={action("onClose")}
     />
   ))
   .add("Form-edit", () => (
     <Form
-     name={"ALVINNN"}
-     interviewers={interviewers}
-     interviewer={2}
-     onSave={action("onSave")}
-     onCancel={action("onCancel")}
-     />
+      name={"ALVINNN"}
+      interviewers={interviewers}
+      interviewer={2}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />
   ))
   .add("Form-create", () => (
     <Form
-     interviewers={interviewers}
-     onSave={action("onSave")}
-     onCancel={action("onCancel")}
-     setInterviewer={action("setInterviewer")}
-     />
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+      setInterviewer={action("setInterviewer")}
+    />
   ))
   .add("Appointment Empty", () => (
     <Fragment>
@@ -199,4 +197,4 @@ storiesOf("Appointment", module)
       />
       <Appointment id="last" time="1pm" />
     </Fragment>
-  ))
+  ));

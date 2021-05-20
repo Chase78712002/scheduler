@@ -15,7 +15,6 @@ export default function Application(props) {
   const { state, setSelectedDay, bookInterview, cancelInterview } =
     useApplicationData();
 
-  
   const interviewers = getInterviewersForDay(state, state.daySelected);
   const dailyAppointments = getAppointmentsForDay(state, state.daySelected).map(
     (appointment) => {
@@ -35,8 +34,6 @@ export default function Application(props) {
       );
     }
   );
-
-  
 
   return (
     <main className="layout">

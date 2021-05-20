@@ -82,12 +82,6 @@ export default {
     }
   }),
   put: jest.fn((url) => {
-    // if(url.match(/api\/appointments\/\d+/)){
-    //   return Promise.resolve({
-    //     status: 204,
-    //     statusText: "No Content",
-    //   });
-    // }
     switch (url) {
       case "/api/days":
         return Promise.resolve({
@@ -140,5 +134,5 @@ export default {
       default:
         return fixtures;
     }
-  })
+  }),
 };

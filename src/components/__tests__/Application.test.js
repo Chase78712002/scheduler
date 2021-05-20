@@ -58,13 +58,10 @@ describe("Application", () => {
   });
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
-    // 1. Render the Application.
     const { container, debug } = render(<Application />);
 
-    // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
-    // 3. Click the "Delete" button on Archie's appointment.
     const appointment = getAllByTestId(container, "appointment").find(
       (appointment) => queryByText(appointment, "Archie Cohen")
     );
@@ -74,13 +71,13 @@ describe("Application", () => {
     expect(
       getByText(appointment, "Do you wish to trash the appointment?")
     ).toBeInTheDocument();
-    // 4. Click "Confirm" button.
+
     fireEvent.click(getByText(appointment, "Confirm"));
-    // 7. Check that the element with the text "Deleting" is displayed.
+
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
-    // 8. Wait until the element with the  "Add" is displayed.
+
     await waitForElement(() => getByAltText(appointment, "Add"));
-    // 9. Check that the DayListItem with the text "Monday" also has the text "2 spots remaining".
+
     const day = getAllByTestId(container, "day").find((day) =>
       queryByText(day, "Monday")
     );
@@ -99,19 +96,23 @@ describe("Application", () => {
     const appointment = getAllByTestId(container, "appointment").find(
       (appointment) => queryByText(appointment, "Archie Cohen")
     );
-
     fireEvent.click(getByAltText(appointment, "Edit"));
+
     // 4. Change Archie's name to Alvin
     fireEvent.change(getByPlaceholderText(appointment, "Enter Student Name"), {
       target: { value: "Alvin" },
     });
+
     // 5. Click "Save" button.
     fireEvent.click(getByText(appointment, "Save"));
+
     // 6. Check that the element with the text "Saving" is displayed.
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
-    // 8. Wait until the element with the text "Alvin" is displayed.
+
+    // 7. Wait until the element with the text "Alvin" is displayed.
     await waitForElement(() => getByText(appointment, "Alvin"));
-    // 9. Check that the DayListItem with the text "Monday" also has the text "1 spot remaining".
+
+    // 8. Check that the DayListItem with the text "Monday" also has the text "1 spot remaining".
     const day = getAllByTestId(container, "day").find((day) =>
       queryByText(day, "Monday")
     );
@@ -133,13 +134,11 @@ describe("Application", () => {
     });
     axios.put.mockRejectedValueOnce();
     fireEvent.click(getByText(appointment, "Save"));
-    // Wait until "Error" is displayed
+
     await waitForElement(() => getByText(appointment, "Error"));
-    // Click the "Close" button
     fireEvent.click(getByAltText(appointment, "Close"));
-    // Check to see the "Save" button is display again
+
     expect(getByText(appointment, "Save")).toBeInTheDocument();
-    console.log(prettyDOM(appointment));
   });
 
   it("shows the delete error when failing to delete an appointment", async () => {
@@ -151,14 +150,17 @@ describe("Application", () => {
     );
 
     axios.delete.mockRejectedValueOnce();
+
     fireEvent.click(getByAltText(appointment, "Delete"));
     expect(
       getByText(appointment, "Do you wish to trash the appointment?")
     ).toBeInTheDocument();
+
     fireEvent.click(getByText(appointment, "Confirm"));
+
     await waitForElement(() => getByText(appointment, "Error"));
+
     fireEvent.click(getByAltText(appointment, "Close"));
     expect(getByAltText(appointment, "Delete")).toBeInTheDocument();
-    console.log(prettyDOM(appointment));
   });
 });

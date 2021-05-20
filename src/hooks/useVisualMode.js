@@ -8,11 +8,11 @@ const useVisualMode = (initial) => {
     if (!replace) {
       setHistory((prev) => [...prev, newMode]);
     }
-    setHistory(prev => [...prev.slice(0,-1), newMode])
+    setHistory((prev) => [...prev.slice(0, -1), newMode]);
     setMode(newMode);
   };
   const back = () => {
-    if (history.length >  1) {
+    if (history.length > 1) {
       setHistory((prev) => {
         const reversedHistory = [...prev].slice(0, -1);
         const previousMode = reversedHistory.slice(-1)[0];

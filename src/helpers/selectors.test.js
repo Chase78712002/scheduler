@@ -1,4 +1,8 @@
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "./selectors";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "./selectors";
 
 const state = {
   days: [
@@ -50,7 +54,7 @@ const state = {
       id: 4,
       name: "Cohana Roy",
       avatar: "https://i.imgur.com/FK8V841.jpg",
-    }
+    },
   },
 };
 
@@ -116,8 +120,8 @@ test("getInterview returns an object with the interviewer data", () => {
       interviewer: expect.objectContaining({
         id: expect.any(Number),
         name: expect.any(String),
-        avatar: expect.any(String)
-      })
+        avatar: expect.any(String),
+      }),
     })
   );
 });

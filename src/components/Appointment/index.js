@@ -33,15 +33,15 @@ export default function Appointment(props) {
     transition(SAVING);
 
     bookInterview(id, interview)
-    .then(() => transition(SHOW))
-    .catch(err => transition(ERROR_SAVE, true))
+      .then(() => transition(SHOW))
+      .catch((err) => transition(ERROR_SAVE, true));
   };
 
   const trash = () => {
     transition(DELETE, true);
     cancelInterview(id)
-    .then(() => transition(EMPTY))
-    .catch(err=> transition(ERROR_DELETE, true))
+      .then(() => transition(EMPTY))
+      .catch((err) => transition(ERROR_DELETE, true));
   };
   return (
     <article className="appointment" data-testid="appointment">
@@ -73,10 +73,7 @@ export default function Appointment(props) {
       )}
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === ERROR_SAVE && (
-        <Error
-          message={"Could not save appointment"}
-          onClose={() => back()}
-        />
+        <Error message={"Could not save appointment"} onClose={() => back()} />
       )}
       {mode === DELETE && <Status message={"Deleting"} />}
       {mode === ERROR_DELETE && (

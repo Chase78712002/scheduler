@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const useApplicationData = () => {
   const [state, setState] = useState({
@@ -15,16 +15,16 @@ const useApplicationData = () => {
     const nullArr = [];
     for (const apptID of selectedDayObj.appointments) {
       const interviewStatus = appointments[apptID].interview;
-      if (interviewStatus === null){
-        nullArr.push(interviewStatus)
+      if (interviewStatus === null) {
+        nullArr.push(interviewStatus);
       }
     }
     const numSpots = nullArr.length;
-    const newDay = {...selectedDayObj, spots:numSpots};
-    const finalDays = days.map(day => {
-      return dayName === day.name ? newDay : day
-    })
-    
+    const newDay = { ...selectedDayObj, spots: numSpots };
+    const finalDays = days.map((day) => {
+      return dayName === day.name ? newDay : day;
+    });
+
     return finalDays;
   };
 
@@ -43,10 +43,13 @@ const useApplicationData = () => {
     return axios
       .put(`/api/appointments/${id}`, appointment)
       .then((response) => {
+        const updatedDays = updateSpots(
+          state.daySelected,
+          state.days,
+          appointments
+        );
 
-        const updatedDays = updateSpots(state.daySelected, state.days, appointments)
-
-        setState({ ...state, appointments, days:updatedDays })
+        setState({ ...state, appointments, days: updatedDays });
       });
   };
 
@@ -60,14 +63,15 @@ const useApplicationData = () => {
       [id]: appointment,
     };
 
-    return axios
-      .delete(`/api/appointments/${id}`)
-      .then((response) => {
+    return axios.delete(`/api/appointments/${id}`).then((response) => {
+      const updatedDays = updateSpots(
+        state.daySelected,
+        state.days,
+        appointments
+      );
 
-        const updatedDays = updateSpots(state.daySelected, state.days, appointments)
-
-        setState({ ...state, appointments, days:updatedDays })
-      });
+      setState({ ...state, appointments, days: updatedDays });
+    });
   };
 
   useEffect(() => {
@@ -85,10 +89,7 @@ const useApplicationData = () => {
     });
   }, []);
 
-
   return { state, setSelectedDay, bookInterview, cancelInterview };
 };
-
-
 
 export default useApplicationData;

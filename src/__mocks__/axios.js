@@ -86,7 +86,6 @@ export default {
     //   return Promise.resolve({
     //     status: 204,
     //     statusText: "No Content",
-    //     data: fixtures.appointments
     //   });
     // }
     switch (url) {

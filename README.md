@@ -21,3 +21,10 @@ npm test
 ```sh
 npm run storybook
 ```
+
+# Screenshots
+!["scheduler_index"](https://github.com/Chase78712002/scheduler/blob/master/docs/scheduler_index.png?raw=true)
+
+!["scheduler_create_appointment"](https://github.com/Chase78712002/scheduler/blob/master/docs/scheduler_create_appointment.png?raw=true)
+
+!["scheduler_cancel_appointment"](https://github.com/Chase78712002/scheduler/blob/master/docs/scheduler_cancel_appointment.png?raw=true)

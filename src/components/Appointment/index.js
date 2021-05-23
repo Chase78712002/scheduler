@@ -34,14 +34,14 @@ export default function Appointment(props) {
 
     bookInterview(id, interview)
       .then(() => transition(SHOW))
-      .catch((err) => transition(ERROR_SAVE, true));
+      .catch(() => transition(ERROR_SAVE, true));
   };
 
   const trash = () => {
     transition(DELETE, true);
     cancelInterview(id)
       .then(() => transition(EMPTY))
-      .catch((err) => transition(ERROR_DELETE, true));
+      .catch(() => transition(ERROR_DELETE, true));
   };
   return (
     <article className="appointment" data-testid="appointment">

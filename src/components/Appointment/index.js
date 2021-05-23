@@ -58,7 +58,7 @@ export default function Appointment(props) {
       {mode === CREATE && (
         <Form
           interviewers={interviewers}
-          onCancel={() => back()}
+          onCancel={back}
           onSave={save}
         />
       )}
@@ -86,7 +86,7 @@ export default function Appointment(props) {
         <Confirm
           message={"Do you wish to trash the appointment?"}
           onConfirm={trash}
-          onCancel={() => back()}
+          onCancel={back}
         />
       )}
     </article>
